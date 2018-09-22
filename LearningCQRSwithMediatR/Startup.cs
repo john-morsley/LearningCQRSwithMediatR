@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LearningCQRSwithMediatR.Managers;
+using LearningCQRSwithMediatR.Repositories;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace LearningCQRSwithMediatR
 {
@@ -28,6 +32,9 @@ namespace LearningCQRSwithMediatR
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+
+            SetUpDependancyInjection(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -51,6 +58,12 @@ namespace LearningCQRSwithMediatR
             {
                 routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static void SetUpDependancyInjection(IServiceCollection services)
+        {
+            services.AddTransient<IUserManager, UserManager>();
+            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
         }
 
     }

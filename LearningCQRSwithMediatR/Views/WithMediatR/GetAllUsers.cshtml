@@ -1,0 +1,14 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewData["Title"] = "QueryWithMediatR";
+}
+
+<h2>Query with MediatR</h2>
+
+<ul>
+@foreach (var user in Model)
+{
+    <li>@user.FullName</li>
+}
+</ul>

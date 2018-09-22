@@ -1,0 +1,19 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<h2>Without MediatR - Add User</h2>
+
+<form asp-controller="WithoutMediatR" asp-action="AddUser" asp-antiforgery="true" method="post">
+
+    <label asp-for="FirstName">First Name:</label>
+    <input type="text" asp-for="FirstName" />
+    <br/>
+    <label asp-for="LastName">Last Name:</label>
+    <input type="text" asp-for="LastName" />
+    <br/>
+    <button type="submit">Submit</button>
+
+</form>

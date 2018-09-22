@@ -1,16 +1,16 @@
 ﻿using LearningCQRSwithMediatR.Models;
 using System.Collections.Generic;
 
-namespace LearningCQRSwithMediatR.Repositories
+namespace LearningCQRSwithMediatR.Managers
 {
 
-    public interface IUserRepository
+    public interface IUserManager
     {
-
-        IEnumerable<User> GetAllUsers();
 
         void AddUser(User user);
 
+        IEnumerable<User> GetAllUsers();
+        
     }
 
 }
